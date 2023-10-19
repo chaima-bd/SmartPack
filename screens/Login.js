@@ -1,4 +1,4 @@
-import { View, Text, Image , Pressable, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, Image , Pressable, TextInput, TouchableOpacity, StyleSheet, Keyboard } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../constants/colors';
@@ -12,21 +12,22 @@ const Login = ({ navigation }) => {
     
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-            <View style={{ flex: 1, marginHorizontal: 22 }}>
-                <View style={{ marginVertical: 22 }}>
+            <View style={{ flex: 1, marginHorizontal: 20 }}>
+            <Pressable
+                    style={styles.backButton}
+                    onPress={() => navigation.goBack()} // Navigate back when the button is pressed
+                >
+                    <Ionicons name="arrow-back" size={24} color={COLORS.black} />
+                </Pressable>
+                <View style={{ marginVertical: 25 }}>
                     <Text style={{
                         fontSize: 22,
                         fontWeight: 'bold',
-                        marginVertical: 12,
+                        marginVertical: 15,
                         color: COLORS.black
                     }}>
                         Hi Welcome Back ! 👋
                     </Text>
-
-                    <Text style={{
-                        fontSize: 16,
-                        color: COLORS.black
-                    }}>Hello again you have been missed!</Text>
                 </View>
 
                 <View style={{ marginBottom: 12 }}>
@@ -50,6 +51,10 @@ const Login = ({ navigation }) => {
                             placeholder='Enter your email address'
                             placeholderTextColor={COLORS.black}
                             keyboardType='email-address'
+                            returnKeyType='done'
+                            onSubmitEditing={() => {
+                                Keyboard.dismiss(); // This line dismisses the keyboard
+                            }}
                             style={{
                                 width: "100%"
                             }}
@@ -78,6 +83,10 @@ const Login = ({ navigation }) => {
                             placeholder='Enter your password'
                             placeholderTextColor={COLORS.black}
                             secureTextEntry={isPasswordShown}
+                            returnKeyType='done'
+                            onSubmitEditing={() => {
+                                Keyboard.dismiss(); // This line dismisses the keyboard
+                            }}
                             style={{
                                 width: "100%"
                             }}
@@ -113,7 +122,7 @@ const Login = ({ navigation }) => {
                         color={isChecked ? COLORS.primary : undefined}
                     />
 
-                    <Text>Remenber Me</Text>
+                    <Text>Remember Me</Text>
                 </View>
 
                 <Button
@@ -225,5 +234,18 @@ const Login = ({ navigation }) => {
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginHorizontal: 22,
+    },
+    backButton: {
+        position: 'absolute',
+        top: 10,
+        left: 10,
+        zIndex: 1, // Ensure the button appears above other components
+    },
+
+});
 
 export default Login
