@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { Login, Signup, Welcome } from "./screens";
+import { Login, Signup, Welcome , CameraComponent ,ExtractedText } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +29,20 @@ export default function App() {
         <Stack.Screen
           name="Signup"
           component={Signup}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="CameraComponent"
+          component={CameraComponent}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="ExtractedText"
+          component={ExtractedText}
           options={{
             headerShown: false
           }}

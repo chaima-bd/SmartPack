@@ -159,6 +159,7 @@ const Signup = ({ navigation }) => {
                 <Button
                     title="Sign Up"
                     filled
+                    onPress={() => navigation.navigate("CameraComponent")}
                     style={{
                         marginTop: 18,
                         marginBottom: 4,

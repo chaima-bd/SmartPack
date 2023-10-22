@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 //import { detectFromUri } from 'rn-text-detector';
 import COLORS from '../constants/colors';
 import TextRecognition from 'react-native-text-recognition';
+import * as FileSystem from 'expo-file-system';
 
 
 const ExtractedText = ({ route }) => {
@@ -14,9 +15,18 @@ const ExtractedText = ({ route }) => {
   useEffect(() => {
     detectText = async () => {
       try {
+        const localUri = await FileSystem.copyAsync({
+          from: imageUri,
+          to: `${FileSystem.cacheDirectory}tempImage.jpg`,
+        });
+
+       // console.log('Image URI:', imageUri);
        // const visionResp = await detectFromUri(imageUri);
-        const visionResp = await TextRecognition.recognize(imageUri);
-        console.log(visionResp);
+        //const visionResp = await TextRecognition.recognize(imageUri);
+      //  console.log(visionResp);
+      const visionResp = await TextRecognition.recognize(localUri);
+      console.log(visionResp);
+
         
         if (visionResp && visionResp.length > 0) {
           const extractedText = visionResp.map(block => block.value).join(' ');
@@ -27,7 +37,8 @@ const ExtractedText = ({ route }) => {
           setLoading(false); // Set loading to false
         }
       } catch (e) {
-        console.warn(e);
+        //console.warn(e);
+        console.warn('Error detecting text:', e);
         setExtractedText('Error detecting text'); // Set an error message in case of an error
         setLoading(false); // Set loading to false
       }
