@@ -9,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
 import axios from 'axios';
+import { Caminterface } from './Caminterface';
 
 
 
@@ -40,7 +41,7 @@ const Signup = ({ navigation }) => {
                 <View style={{ marginBottom: 9 }}>
                     <Text style={{
                         fontSize: 15,
-                        fontWeight: 400,
+                        fontWeight: 'bold',
                         marginVertical: 8
                     }}>Full Name</Text>
 
@@ -72,7 +73,7 @@ const Signup = ({ navigation }) => {
                 <View style={{ marginBottom: 9 }}>
                     <Text style={{
                         fontSize: 15,
-                        fontWeight: 400,
+                        fontWeight: 'bold',
                         marginVertical: 8
                     }}>Email Adress</Text>
 
@@ -104,7 +105,7 @@ const Signup = ({ navigation }) => {
                 <View style={{ marginBottom: 9 }}>
                     <Text style={{
                         fontSize: 15,
-                        fontWeight: 400,
+                        fontWeight: 'bold',
                         marginVertical: 8
                     }}>Mobile Number</Text>
 
@@ -137,7 +138,7 @@ const Signup = ({ navigation }) => {
                 <View style={{ marginBottom: 9 }}>
                     <Text style={{
                         fontSize: 16,
-                        fontWeight: 400,
+                        fontWeight: 'bold',
                         marginVertical: 8
                     }}>Password</Text>
 
@@ -185,7 +186,7 @@ const Signup = ({ navigation }) => {
                 <View style={{ marginBottom: 9 }}>
                     <Text style={{
                         fontSize: 16,
-                        fontWeight: 400,
+                        fontWeight: 'bold',
                         marginVertical: 8
                     }}>City</Text>
                     <View style={{
@@ -232,7 +233,7 @@ const Signup = ({ navigation }) => {
                 <Button
                     title="Sign Up"
                     filled
-                    onPress={() => navigation.navigate("CamInterface")}
+                    onPress={() => navigation.navigate("Caminterface")}
                     style={{
                         marginTop: 10,
                         marginBottom: 4,

@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import COLORS from '../constants/colors';
 import Button from '../components/Button';
 
+
 const Welcome = ({ navigation }) => {
 
     return (
@@ -31,7 +32,7 @@ const Welcome = ({ navigation }) => {
                 }}>
                     <Text style={{
                         fontSize: 25,
-                        fontWeight: 800,
+                        fontWeight: "bold",
                         color: COLORS.white
                     }}>Where Orders Come Easy</Text>
 

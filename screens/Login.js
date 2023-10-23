@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
                 <View style={{ marginBottom: 12 }}>
                     <Text style={{
                         fontSize: 16,
-                        fontWeight: 400,
+                        fontWeight: 'bold',
                         marginVertical: 8
                     }}>Email address</Text>
 
@@ -65,7 +65,7 @@ const Login = ({ navigation }) => {
                 <View style={{ marginBottom: 12 }}>
                     <Text style={{
                         fontSize: 16,
-                        fontWeight: 400,
+                        fontWeight: 'bold',
                         marginVertical: 8
                     }}>Password</Text>
 
