@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import { LinearGradient } from "expo-linear-gradient";
-import { async } from 'q';
+//import { async } from 'q';
 
 const Caminterface = ({ navigation }) => {
     const [imageUri, setImageUri] = useState(null);
