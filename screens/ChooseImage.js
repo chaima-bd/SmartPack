@@ -1,12 +1,41 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import {View, Text, Pressable, Image , StyleSheet, TouchableOpacity} from 'react-native'
 import { LinearGradient } from "expo-linear-gradient";
 import COLORS from '../constants/colors';
 ////////////
-import { Pressable, Image , StyleSheet} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
+//import { async } from 'q';
+
+
 import Button from '../components/Button';
 
 const ChooseImage = ({ navigation }) => {
+
+    const [imageUri, setImageUri] = useState(null);
+    const [labels, setLabels] = useState([]);
+
+    const pickImage = async () => {
+
+        try {
+            let result = await ImagePicker.launchImageLibraryAsync({
+
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [4, 3],
+                quality: 1,
+            });
+
+            if (!result.canceled) {
+                setImageUri(result.assets[0].uri);
+            }
+            console.log(result);
+        } catch (error) {
+            console.log('Error', error)
+        };
+    }
+
     return (
 
         <LinearGradient
@@ -35,6 +64,7 @@ const ChooseImage = ({ navigation }) => {
                 
                     <Button
                         title="From Your Phone"
+                        onPress={pickImage}
                         style={{
                             marginTop: 22,
                             width: "100%"
