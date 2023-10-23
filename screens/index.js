@@ -2,7 +2,7 @@
 import Login from "./Login";
 import Welcome from "./Welcome";
 import Signup from "./Signup";
-import Caminterface from "./CamInterface";
+import CamInterface from "./CamInterface";
 
 export {
     Login,

@@ -9,7 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
 import axios from 'axios';
-import { Caminterface } from './Caminterface';
+import { CamInterface } from './CamInterface';
 
 
 
@@ -233,7 +233,7 @@ const Signup = ({ navigation }) => {
                 <Button
                     title="Sign Up"
                     filled
-                    onPress={() => navigation.navigate("Caminterface")}
+                    onPress={() => navigation.navigate("CamInterface")}
                     style={{
                         marginTop: 10,
                         marginBottom: 4,

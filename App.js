@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { Login, Signup, Welcome , Caminterface } from "./screens";
+import { Login, Signup, Welcome , CamInterface } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,8 +34,8 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="Caminterface"
-          component={Caminterface}
+          name="CamInterface"
+          component={CamInterface}
           options={{
             headerShown: false
           }}
