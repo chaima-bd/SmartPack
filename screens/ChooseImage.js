@@ -6,7 +6,7 @@ import COLORS from '../constants/colors';
 import { Pressable, Image , StyleSheet} from 'react-native'
 import Button from '../components/Button';
 
-const ChooseImage = () => {
+const ChooseImage = ({ navigation }) => {
     return (
 
         <LinearGradient
@@ -42,6 +42,8 @@ const ChooseImage = () => {
                     />
                     <Button
                         title="Take Pic"
+                        onPress={() => navigation.navigate("CamPage")}
+
                         style={{
                             marginTop: 22,
                             width: "100%"
