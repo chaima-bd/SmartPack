@@ -6,7 +6,7 @@ import * as FileSystem from 'expo-file-system';
 import { LinearGradient } from "expo-linear-gradient";
 //import { async } from 'q';
 
-const Caminterface = ({ navigation }) => {
+const CamInterface = ({ navigation }) => {
     const [imageUri, setImageUri] = useState(null);
     const [labels, setLabels] = useState([]);
 
@@ -157,6 +157,6 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Caminterface;
+export default CamInterface;
 
 
