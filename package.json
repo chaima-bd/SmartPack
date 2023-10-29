@@ -11,12 +11,16 @@
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
     "@react-native-picker/picker": "^2.5.1",
-    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/bottom-tabs": "^6.5.10",
+    "@react-navigation/material-bottom-tabs": "^6.2.18",
+    "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.12",
+    "@react-navigation/stack": "^6.3.19",
     "axios": "^1.5.1",
     "expo": "~49.0.13",
     "expo-checkbox": "~2.4.0",
     "expo-linear-gradient": "~12.3.0",
+    "expo-navigation-bar": "~2.3.0",
     "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
     "list-of-moroccan-cities": "^1.0.4",
@@ -28,6 +32,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "13.9.0",
+    "react-native-table-component": "^1.2.2",
     "react-native-web": "^0.19.9"
   },
   "devDependencies": {

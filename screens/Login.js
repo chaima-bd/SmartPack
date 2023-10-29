@@ -124,9 +124,9 @@ const Login = ({ navigation }) => {
 
                     <Text>Remember Me</Text>
                 </View>
-
-                <Button
+                        <Button
                     title="Login"
+                    onPress={() => navigation.navigate("HomeScreen")}
                     filled
                     style={{
                         marginTop: 18,

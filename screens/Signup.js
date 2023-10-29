@@ -8,8 +8,9 @@ import COLORS from '../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox"
 import Button from '../components/Button';
-import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
+import axios from 'axios';
 
 
 const Signup = ({ navigation }) => {
@@ -232,10 +233,12 @@ const Signup = ({ navigation }) => {
                 <Button
                     title="Sign Up"
                     filled
+                    onPress={() => navigation.navigate("Login")}
                     style={{
                         marginTop: 10,
                         marginBottom: 4,
                     }}
+                    
                 />
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 13 }}>
