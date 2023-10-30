@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 12,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     }
 })
 export default Button
