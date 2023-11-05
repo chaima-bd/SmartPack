@@ -41,11 +41,7 @@ const Welcome = ({ navigation }) => {
                             color: COLORS.white,
                             marginVertical: 4
                         }}>Your application for ordering school supplies. We've got you covered.</Text>
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.white,
-                            marginVertical: 4
-                        }}>Let's Get Started</Text>
+                       
                     </View>
 
                     <Button
@@ -53,7 +49,7 @@ const Welcome = ({ navigation }) => {
                         onPress={() => navigation.navigate("Signup")}
                         style={{
                             marginTop: 22,
-                            width: "100%"
+                            width: "100%",
                         }}
                     />
                     <View style={{

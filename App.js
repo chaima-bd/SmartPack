@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Login, Signup, Welcome, ChooseImage, CamPage } from "./screens";
+import { Login, Signup, Welcome, ScanScreen, CommandDetails, CartScreen} from "./screens";
+import AppNavigator from './screens/AppNavigator';
 
 
 const Stack = createNativeStackNavigator();
@@ -37,6 +39,8 @@ export default function App() {
         <Stack.Screen
           name="ChooseImage"
           component={ChooseImage}
+          name="HomeScreen"
+          component={AppNavigator} // Use the BottomNavigator as a component
           options={{
             headerShown: false
           }}
@@ -44,10 +48,29 @@ export default function App() {
          <Stack.Screen
           name="CamPage"
           component={CamPage}
+          />
+        <Stack.Screen
+          name="ScanScreen"
+          component={ScanScreen} 
           options={{
             headerShown: false
           }}
         />
+        <Stack.Screen
+          name="CartScreen"
+          component={CartScreen} 
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="CommandDetails"
+          component={CommandDetails}
+          options={{
+            headerShown: false
+          }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
