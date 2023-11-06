@@ -329,6 +329,7 @@ const Signup = ({ navigation }) => {
                     <Text style={{ fontSize: 16, color: COLORS.black }}>Already have an account</Text>
                     <Pressable
                         onPress={() => navigation.navigate("Login")}
+
                     >
                         <Text style={{
                             fontSize: 16,
