@@ -2,7 +2,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './HomeScreen';
 import CartScreen from './CartScreen';
-import ScanScreen from './ScanScreen';
+import ChooseImage from './ChooseImage';
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
@@ -10,7 +10,7 @@ const AppNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Cart" component={CartScreen} />
-      <Tab.Screen name="Scan" component={ScanScreen} />
+      <Tab.Screen name="Scan" component={ChooseImage} />
     </Tab.Navigator>
   );
 };

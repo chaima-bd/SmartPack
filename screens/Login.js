@@ -128,7 +128,7 @@ const Login = ({ navigation }) => {
                     title="Login"
                     onPress={() => navigation.navigate("HomeScreen")}
                     filled
-                    onPress={() => navigation.navigate("ChooseImage")}
+                    //onPress={() => navigation.navigate("ChooseImage")}
                     style={{
                         marginTop: 18,
                         marginBottom: 4,

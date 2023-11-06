@@ -4,7 +4,7 @@ import COLORS from '../constants/colors';
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Button from '../components/Button';
-import ScanScreen from './ScanScreen';
+//import ScanScreen from './ScanScreen';
 
 
 const HomeScreen = ({ navigation }) => {

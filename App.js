@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Login, Signup, Welcome, ChooseImage, CamPage } from "./screens";
-import { ScanScreen, CommandDetails, CartScreen} from "./screens";
+import {  CommandDetails, CartScreen} from "./screens";
 import AppNavigator from './screens/AppNavigator';
 
 
@@ -56,13 +56,7 @@ export default function App() {
           name="CamPage"
           component={CamPage}
           />
-        <Stack.Screen
-          name="ScanScreen"
-          component={ScanScreen} 
-          options={{
-            headerShown: false
-          }}
-        />
+        
         <Stack.Screen
           name="CartScreen"
           component={CartScreen} 
