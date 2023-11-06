@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Login, Signup, Welcome, ChooseImage, CamPage } from "./screens";
-import { Login, Signup, Welcome, ScanScreen, CommandDetails, CartScreen} from "./screens";
+import { ScanScreen, CommandDetails, CartScreen} from "./screens";
 import AppNavigator from './screens/AppNavigator';
 
 
@@ -39,6 +39,13 @@ export default function App() {
         <Stack.Screen
           name="ChooseImage"
           component={ChooseImage}
+          
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+      
           name="HomeScreen"
           component={AppNavigator} // Use the BottomNavigator as a component
           options={{
