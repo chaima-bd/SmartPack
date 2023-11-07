@@ -10,7 +10,7 @@ const AppNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Cart" component={CartScreen} />
-      <Tab.Screen name="Scan" component={ChooseImage} />
+      <Tab.Screen name="ScanPhoto" component={ChooseImage} />
     </Tab.Navigator>
   );
 };

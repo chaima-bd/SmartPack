@@ -6,7 +6,6 @@ import ChooseImage from './ChooseImage';
 import CamPage from './CamPage';
 import HomeScreen from "./HomeScreen";
 import CartScreen from "./CartScreen";
-import ScanScreen from "./ScanScreen";
 import CommandDetails from "./CommandDetails";
 
 export {
@@ -17,8 +16,5 @@ export {
     CamPage,
     HomeScreen,
     CartScreen,
-    ScanScreen,
     CommandDetails
-
-    
 }

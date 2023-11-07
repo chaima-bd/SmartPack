@@ -55,6 +55,9 @@ export default function App() {
          <Stack.Screen
           name="CamPage"
           component={CamPage}
+          options={{
+            headerShown: false
+          }}
           />
         
         <Stack.Screen
