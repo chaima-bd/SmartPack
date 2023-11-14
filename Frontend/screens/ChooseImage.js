@@ -4,37 +4,69 @@ import COLORS from '../constants/colors';
 ////////////
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import * as ImagePicker from 'expo-image-picker';
+ import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 //import { async } from 'q';
-
+//import { ImagePicker } from 'react-native-image-picker';
 
 import Button from '../components/Button';
 
 const ChooseImage = ({ navigation }) => {
 
-    const [imageUri, setImageUri] = useState(null);
-    const [labels, setLabels] = useState([]);
+    const [image, setImage] = useState(null);
 
-    const pickImage = async () => {
-
-        try {
-            let result = await ImagePicker.launchImageLibraryAsync({
-
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-            });
-
-            if (!result.canceled) {
-                setImageUri(result.assets[0].uri);
-            }
-            console.log(result);
-        } catch (error) {
-            console.log('Error', error)
-        };
-    }
+    const handleImageSelection = async () => {
+      try {
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaType: ImagePicker.MediaTypeOptions.Images,
+         // allowsEditing: true,
+         
+        });
+        console.log('Image selected ', result)
+        console.log('                            ')
+        if (!result.cancelled) {
+          const image = await result.assets[0];
+         
+          if (image) {
+             // Convert the image data to base64
+             const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
+          //   console.log('ImageData : !!!!!! ', imageData)
+         // console.log('                               ')
+           // const imageData = await image.uri.toDataURL();
+            console.log('Image selected successfully', image);
+            setImage(image);
+          }
+        }
+      } catch (error) {
+        console.error('Error selecting image:', error);
+      }
+    };
+    
+    const handleImageUpload = async () => {
+      if (!image) {
+        return;
+      }
+  
+      try {
+        // Convert the local file URI to a base64 string
+        const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
+    
+        // Send the base64 image data to your Django API endpoint
+        const response = await axios.post('https://your-django-api-endpoint', {
+          image: imageData,
+        });
+    
+        if (response.status === 200) {
+          console.log('Image uploaded successfully');
+          setImage(null);
+        } else {
+          console.error('Error uploading image:', response.data);
+        }
+      } catch (error) {
+        console.error('Error sending image to server:', error);
+      }
+    };
+    
 
     return (
 
@@ -52,9 +84,11 @@ const ChooseImage = ({ navigation }) => {
                 <View style={{
                     paddingHorizontal: 22,
                     position: "absolute",
-                    top: 400,
+                    top: 100,
                     width: "100%"
                 }}>
+<Image source={{ uri: image }} style={styles.image} onLoad={() => console.log(' ????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????')} />
+
                     <Text style={{
                         fontSize: 25,
                         fontWeight: 800,
@@ -64,7 +98,15 @@ const ChooseImage = ({ navigation }) => {
                 
                     <Button
                         title="From Your Phone"
-                        onPress={pickImage}
+                        onPress={handleImageSelection}
+                        style={{
+                            marginTop: 22,
+                            width: "100%"
+                        }}
+                    />
+                     <Button
+                        title="upload"
+                        onPress={handleImageUpload}
                         style={{
                             marginTop: 22,
                             width: "100%"
@@ -86,5 +128,10 @@ const ChooseImage = ({ navigation }) => {
 
     )
 }
-
+const styles = {
+  image: {
+    width: 15,
+    height: 15,
+  },
+};
 export default ChooseImage

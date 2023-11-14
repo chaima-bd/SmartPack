@@ -61,8 +61,36 @@ export default function CamPage() {
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
   }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
 
- 
+  const uploadImage = async (title, image) => {
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('image_url', {
+        uri: image.uri,
+        type: 'image/jpeg', // or the actual mime type of the image
+        name: 'image.jpg',
+    });
+
+    try {
+        const response = await fetch('http://localhost:5432/api/upload', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        if (response.ok) {
+            console.log('Image uploaded successfully');
+        } else {
+            console.error('Failed to upload image');
+        }
+    } catch (error) {
+        console.error('Error uploading image:', error);
+    }
+};
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <LinearGradient
       style={{
