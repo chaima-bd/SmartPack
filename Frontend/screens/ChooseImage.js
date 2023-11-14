@@ -31,7 +31,6 @@ const ChooseImage = ({ navigation }) => {
              // Convert the image data to base64
              const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
           //   console.log('ImageData : !!!!!! ', imageData)
-         // console.log('                               ')
            // const imageData = await image.uri.toDataURL();
             console.log('Image selected successfully', image);
             setImage(image);
@@ -46,13 +45,12 @@ const ChooseImage = ({ navigation }) => {
       if (!image) {
         return;
       }
-  
       try {
         // Convert the local file URI to a base64 string
         const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
-    
+  
         // Send the base64 image data to your Django API endpoint
-        const response = await axios.post('https://your-django-api-endpoint', {
+        const response = await axios.post('http://localhost:8000/api/upload', {
           image: imageData,
         });
     

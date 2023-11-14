@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
-    'OCRApp.apps.OCRAppConfig',
+    #'OCRApp.apps.OCRAppConfig',
     "phonenumber_field",
     'rest_framework',
     'OCRApp',
-    #'corsheaders',
+    'corsheaders',
     #'OCRAppConfig'
 ]
 CORS_ORIGIN_ALLOW_ALL = True

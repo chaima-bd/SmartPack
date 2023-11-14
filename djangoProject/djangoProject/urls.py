@@ -20,14 +20,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from OCRApp.views import ImageUploadView 
+from OCRApp import views 
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('catalog/', include('catalog.urls')),
                   path('api/upload/', ImageUploadView.as_view(), name='image-upload'),
                   path('', RedirectView.as_view(url='catalog/')),
-                  path('OCRApp/',  include('OCRApp.urls', namespace='OCRApp')),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                 # path('OCRApp/', include('OCRApp.urls')),
+                  #path('OCRApp/uploadImg', views.say_hello),
+         ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 #from django.conf import settings
 #from django.conf.urls.static import static
