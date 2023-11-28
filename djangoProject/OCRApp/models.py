@@ -13,4 +13,4 @@ class MyModel(models.Model):
   #  creator = models.ForeignKey( User, on_delete=models.CASCADE, related_name="listings")
     title = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField()
-    image_url = models.ImageField( ("Image"), upload_to = upload_to, blank=True, null=True, default= 'posts/default.jpg')
+    image = models.ImageField("Image", upload_to=upload_to, blank=True, null=True, default='posts/default.jpg')

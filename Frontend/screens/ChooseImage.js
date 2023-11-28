@@ -22,9 +22,9 @@ const ChooseImage = ({ navigation }) => {
          // allowsEditing: true,
          
         });
-        console.log('Image selected ', result)
+       // console.log('Image selected ', result)
         console.log('                            ')
-        if (!result.cancelled) {
+        if (!result.canceled) {
           const image = await result.assets[0];
          
           if (image) {
@@ -32,7 +32,7 @@ const ChooseImage = ({ navigation }) => {
              const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
           //   console.log('ImageData : !!!!!! ', imageData)
            // const imageData = await image.uri.toDataURL();
-            console.log('Image selected successfully', image);
+          //  console.log('Image selected successfully imageData : ', imageData);
             setImage(image);
           }
         }
@@ -48,12 +48,13 @@ const ChooseImage = ({ navigation }) => {
       try {
         // Convert the local file URI to a base64 string
         const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
-  
+
         // Send the base64 image data to your Django API endpoint
-        const response = await axios.post('http://localhost:8000/api/upload', {
+        const response = await axios.post('http://127.0.0.1:8000/api/upload', {
           image: imageData,
         });
-    
+        console.log('wa khdam lah yrdi 3lik ')
+  
         if (response.status === 200) {
           console.log('Image uploaded successfully');
           setImage(null);
@@ -65,6 +66,8 @@ const ChooseImage = ({ navigation }) => {
       }
     };
     
+   // console.log('valeure de image ', image)
+   // console.log('la valeure de image.uri', image.uri)
 
     return (
 
@@ -77,15 +80,17 @@ const ChooseImage = ({ navigation }) => {
             <View style={{ flex: 1 }}>
                 
 
-                {/* content  */}
-
                 <View style={{
                     paddingHorizontal: 22,
                     position: "absolute",
                     top: 100,
                     width: "100%"
                 }}>
-<Image source={{ uri: image }} style={styles.image} onLoad={() => console.log(' ????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????')} />
+              {image ? (
+      <Image source={{ uri: image.uri }} style={styles.image} />
+    ) : (
+      <Text>No image selected</Text>
+    )}
 
                     <Text style={{
                         fontSize: 25,
@@ -128,8 +133,9 @@ const ChooseImage = ({ navigation }) => {
 }
 const styles = {
   image: {
-    width: 15,
-    height: 15,
+    width: "60%" ,
+    height: "60%",
+    
   },
 };
 export default ChooseImage
