@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "react-native-image-picker": "^7.0.2"
+    "react-native-image-picker": "^7.0.3"
   },
   "private": true
 }
