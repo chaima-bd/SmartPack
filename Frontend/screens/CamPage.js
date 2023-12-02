@@ -61,7 +61,8 @@ export default function CamPage() {
           encoding: FileSystem.EncodingType.Base64,
         });
         const response = await axios.post('http://localhost:8000/api/upload', {
-          image: imageData,
+          //image: imageData,
+          image: 'data:image/jpeg;base64,${imageData}',
         });
   
         if (response.status === 200) {
