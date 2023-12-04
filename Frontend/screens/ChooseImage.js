@@ -50,7 +50,7 @@ const ChooseImage = ({ navigation }) => {
         const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
 
         // Send the base64 image data to your Django API endpoint
-        const response = await axios.post('http://127.0.0.1:8000/api/upload', {
+        const response = await axios.post('http://127.0.0.1:8000/api/', {
           image: imageData,
         });
         console.log('wa khdam lah yrdi 3lik ')
