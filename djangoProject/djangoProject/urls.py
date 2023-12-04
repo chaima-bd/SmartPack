@@ -19,9 +19,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
+from OCRApp.views import ImageUploadView
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('catalog/', include('catalog.urls')),
-                  path('', RedirectView.as_view(url='catalog/')),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('admin/', admin.site.urls),
+    path('catalog/', include('catalog.urls')),
+    path('api/upload/', ImageUploadView.as_view(), name='image-upload'),
+    path('', RedirectView.as_view(url='catalog/')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

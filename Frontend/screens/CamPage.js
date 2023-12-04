@@ -8,7 +8,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Button from './Button';
 import * as MediaLibrary from 'expo-media-library';
 //import ExtractedText from './ExtractedText'; 
-
+import axios from 'axios';
+import * as FileSystem from 'expo-file-system';
 
 export default function CamPage() {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -27,31 +28,66 @@ export default function CamPage() {
   }, []);
 
   const onCameraReady = () => {
+    console.log('Camera is ready');
     setIsCameraReady(true);
   };
+  
 
   const takePicture = async () => {
     if (cameraRef && isCameraReady) {
       try {
         const data = await cameraRef.current.takePictureAsync();
-        console.log(data);
-        setImage(data.uri);
+        console.log('Picture taken:', data);
+        if (data.uri) {
+          setImage(data.uri);
+         // savePicture(); 
+        } else {
+          console.error('No URI in the picture data.');
+        }
       } catch (error) {
-        console.log(error);
+        console.error('Error taking picture:', error);
       }
+    } else {
+      console.warn('Camera not ready yet.');
     }
   };
+  
+  
 
-
+  const uploadImage = async () => {
+    if (image) {
+      try {
+        const imageData = await FileSystem.readAsStringAsync(image.uri, {
+          encoding: FileSystem.EncodingType.Base64,
+        });
+        const response = await axios.post('http://localhost:8000/api/upload', {
+          //image: imageData,
+          image: 'data:image/jpeg;base64,${imageData}',
+        });
+  
+        if (response.status === 200) {
+          console.log('Image uploaded successfully');
+          setImage(null);
+        } else {
+          console.error('Error uploading image:', response.data);
+        }
+      } catch (error) {
+        console.error('Error sending image to server:', error);
+      }
+    } else {
+      console.log('Image is undefined');
+    }
+  };
+  
+  
   const savePicture = async () => {
     if (image) {
       try {
         const asset = await MediaLibrary.createAssetAsync(image);
         alert('Picture saved! 🎉');
-        setImage(null);
-        console.log('saved successfully');
-        navigation.navigate('ExtractedText', { imageUri: asset.uri });
-      
+        console.log('saved successfully', asset);
+       // await uploadImage();
+      //  setImage(null);
       } catch (error) {
         console.log(error);
       }
@@ -61,8 +97,40 @@ export default function CamPage() {
   if (hasCameraPermission === false) {
     return <Text>No access to camera</Text>;
   }
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
 
- 
+//   const uploadImage = async (title, image) => {
+//     console.log('start upload')
+//     const formData = new FormData();
+//     formData.append('title', title);
+//     console.log()
+//     formData.append('image_url', {
+//         uri: image.uri,
+//         type: 'image/jpeg', // or the actual mime type of the image
+//         name: 'image.jpg',
+//     });
+
+//     try {
+//         const response = await fetch('http://localhost:8000/api/upload', {
+//             method: 'POST',
+//             body: formData,
+//             headers: {
+//                 'Content-Type': 'multipart/form-data',
+//             },
+//         });
+
+//         if (response.ok) {
+//             console.log('Image uploaded successfully');
+//         } else {
+//             console.error('Failed to upload image');
+//         }
+//     } catch (error) {
+//         console.error('Error uploading image:', error);
+//     }
+// };
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
   return (
     <LinearGradient
       style={{
