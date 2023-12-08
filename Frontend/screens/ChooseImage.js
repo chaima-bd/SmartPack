@@ -25,16 +25,12 @@ const ChooseImage = ({ navigation }) => {
        // console.log('Image selected ', result)
         console.log('                            ')
         if (!result.canceled) {
-          const image = await result.assets[0];
-         
+          const image = result.assets[0];
+          
           if (image) {
-             // Convert the image data to base64
-             const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
-          //   console.log('ImageData : !!!!!! ', imageData)
-           // const imageData = await image.uri.toDataURL();
-          //  console.log('Image selected successfully imageData : ', imageData);
             setImage(image);
           }
+          
         }
       } catch (error) {
         console.error('Error selecting image:', error);
@@ -46,21 +42,39 @@ const ChooseImage = ({ navigation }) => {
         return;
       }
       try {
-        // Convert the local file URI to a base64 string
-        const imageData = await FileSystem.readAsStringAsync(image.uri, { encoding: FileSystem.EncodingType.Base64 });
-
         // Send the base64 image data to your Django API endpoint
-        const response = await axios.post('http://127.0.0.1:8000/api/', {
-          image: imageData,
+        //const response = await axios.post('http://10.0.2.2:8000/api/posts', {
+        //  data: image,
+        //});
+
+        let localUri = image.uri;
+        
+        let filename = localUri.split('/').pop();
+
+        let match = /\.(\w+)$/.exec(filename);
+        let type = match ? `image/${match[1]}` : `image`;
+
+        let formData = new FormData();
+        formData.append('image', { uri: localUri, name: filename, type });
+
+        const response = await axios({
+          method: 'POST',
+          url: 'http://10.0.2.2:8000/api/posts/',
+          data: formData,
+          headers: {         
+            'accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
+        }
         });
-        console.log('wa khdam lah yrdi 3lik ')
-  
-        if (response.status === 200) {
+        
+        if (response.status === 201) {
           console.log('Image uploaded successfully');
           setImage(null);
         } else {
+          console.log('status', response.status)
           console.error('Error uploading image:', response.data);
         }
+        
       } catch (error) {
         console.error('Error sending image to server:', error);
       }
