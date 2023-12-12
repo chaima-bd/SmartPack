@@ -76,6 +76,7 @@ const ChooseImage = ({ navigation }) => {
         }
         
       } catch (error) {
+        console.info(error)
         console.error('Error sending image to server:', error);
       }
     };
