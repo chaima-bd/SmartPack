@@ -1,15 +1,16 @@
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet, Image, Pressable } from 'react-native'
 import { Ionicons } from "@expo/vector-icons";
 import COLORS from '../constants/colors';
-import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Button from '../components/Button';
 import { Table, Row } from 'react-native-table-component';
 
-const CommandDetails = ({ navigation }) => {
+const CommandDetails = ({navigation }) => {
 
     const CommandDetailsScreen = ({ route }) => {
-        const { commandData } = route.params; // Receive data of the selected command
+        const [tableData, setTableData] = useState([]);
+        const [extractedText, setExtractedText] = useState('');
         // State to store the selected products and their checkboxes
         const [selectedProducts, setSelectedProducts] = useState({});
         // Function to handle checkbox selection
@@ -19,14 +20,27 @@ const CommandDetails = ({ navigation }) => {
                 [productId]: !selectedProducts[productId],
             });
         };
-        // Function to handle confirming the command
-        const confirmCommand = () => {
-            // Implement the logic to confirm the command with selected products and comments
-        };
-        // Function to handle deleting the command
-        const deleteCommand = () => {
-            // Implement the logic to delete the command
-        };
+
+        useEffect(() => {
+            // Process the OCR data from the commandData
+            // Process the OCR data from the response
+            const response = route.params.responseData;
+            const ocrData = response.ocrData;
+            const rawExtractedText = response.extractedText;  // Optional: Include raw extracted text
+
+            // Set the extracted text state
+            setExtractedText(rawExtractedText);
+
+            // Create table rows from the OCR data
+            const rows = ocrData.map((item) => [
+            item.nom_produit,
+            item.quantite.toString(),
+            item.status,
+            'Add to Cart', // You can customize this part based on your requirements
+        ]);
+  
+        setTableData(rows);
+        }, [route.params]);
     }
 
 
@@ -43,9 +57,10 @@ const CommandDetails = ({ navigation }) => {
             </View>
             <View style={styles.content}>
                 <Table>
-                    <Row data={['Product Name', 'Status', 'Quantity', 'Add to Cart']} />
-                    {/* Map through commandData.products and create rows in the table */}
+                    <Row data={['Product Name', 'Quantity', 'Status', 'Add to Cart']} />
+                    {tableData.map((rowData, index) => (<Row key={index} data={rowData} />))}
                 </Table>
+                <Text>{extractedText}</Text>
 
                 <TextInput placeholder="Add a comment" />
 
