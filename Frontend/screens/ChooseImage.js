@@ -62,7 +62,7 @@ const ChooseImage = ({ navigation }) => {
         url: 'http://10.0.2.2:8000/api/posts/',
         data: formData,
         headers: {
-          'accept': 'application/json',
+          //'accept': 'application/json',
           'Content-Type': 'multipart/form-data'
         }
       });
