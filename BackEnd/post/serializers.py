@@ -1,14 +1,14 @@
 from rest_framework import serializers
 from .models import Post
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = 'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
 # Now you can import pytesseract and use it in your script
 from PIL import Image
 
 class PostSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(required=False)
-
+    image = serializers.ImageField(required=True)
+    content = serializers.CharField(required=True)
     class Meta:
         model = Post
         fields = '__all__'
@@ -23,7 +23,8 @@ class PostSerializer(serializers.ModelSerializer):
 
             # Print the extracted text
             print(f"Extracted text from image: {text_content}")
-
+        if not validated_data['content']:
+            raise serializers.ValidationError({'content': 'Extracted content from image is empty.'})
         # Create the Post object
         post = super().create(validated_data)
         return post
