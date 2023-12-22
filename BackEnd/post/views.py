@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 import pytesseract
 from PIL import Image
+import uuid
 
 pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
@@ -41,12 +42,26 @@ class PostView(APIView):
         try:
             image = Image.open(image_path)
             text_content = pytesseract.image_to_string(image)
+            # Use KeywordExtractor from spaCy or similar library
+
+            #from spacy import load
+            #nlp = load("en_core_web_sm")
+            #doc = nlp(text_content)
+            #keywords = [key.text for key in doc.noun_chunks]
+            # Generate a unique ID using uuid4()
+            unique_id = str(uuid.uuid4().hex[:6])  # Change hex[:6] to adjust ID length
+            # Combine the base title and unique ID for the final title
+            title = unique_id
+
             post_instance.content = text_content
+            post_instance.title = title
             post_instance.save()
             print(f"Extracted text from image: {text_content}")
+            print(f"Generated title: {title}")
         except Exception as e:
             print(f"Error extracting text from image: {e}")
             import traceback
             traceback.print_exc()
+
             
 

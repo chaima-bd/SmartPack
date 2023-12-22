@@ -1,7 +1,6 @@
 import { View, Text, Pressable, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { LinearGradient } from "expo-linear-gradient";
 import COLORS from '../constants/colors';
-////////////
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
@@ -19,18 +18,11 @@ const ChooseImage = ({ navigation }) => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaType: ImagePicker.MediaTypeOptions.Images,
-        // allowsEditing: true,
-
       });
-      // console.log('Image selected ', result)
-      console.log('                            ')
-      if (!result.canceled) {
-        const image = result.assets[0];
 
-        if (image) {
-          setImage(image);
-        }
-
+      if (!result.cancelled) {
+        const selectedImage = result.uri;
+        setImage(selectedImage);
       }
     } catch (error) {
       console.error('Error selecting image:', error);
@@ -41,46 +33,39 @@ const ChooseImage = ({ navigation }) => {
     if (!image) {
       return;
     }
+
     try {
-      // Send the base64 image data to your Django API endpoint
-      //const response = await axios.post('http://10.0.2.2:8000/api/posts', {
-      //  data: image,
-      //});
+      const formData = new FormData();
+      const filename = image.split('/').pop();
+      const match = /\.(\w+)$/.exec(filename);
+      const type = match ? `image/${match[1]}` : 'image';
 
-      let localUri = image.uri;
+      formData.append('image', {
+        uri: image,
+        name: filename,
+        type,
+      });
 
-      let filename = localUri.split('/').pop();
-
-      let match = /\.(\w+)$/.exec(filename);
-      let type = match ? `image/${match[1]}` : `image`;
-
-      let formData = new FormData();
-      formData.append('image', { uri: localUri, name: filename, type });
-
-      const response = await axios({
-        method: 'POST',
-        url: 'http://10.0.2.2:8000/api/posts/',
-        data: formData,
+      const response = await axios.post('http://localhost:8000/api/posts/', formData, {
         headers: {
-          //'accept': 'application/json',
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       });
 
       if (response.status === 201) {
         console.log('Image uploaded successfully');
         setImage(null);
       } else {
-        console.log('status', response.status)
+        console.log('Status:', response.status);
         console.error('Error uploading image:', response.data);
       }
-
     } catch (error) {
       console.error('Error sending image to server:', error);
     }
   };
 
-  // console.log('valeure de image ', image)
+  
+   console.log('valeure de image ', image)
   // console.log('la valeure de image.uri', image.uri)
 
   return (
