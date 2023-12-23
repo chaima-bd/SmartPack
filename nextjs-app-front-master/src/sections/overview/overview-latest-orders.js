@@ -45,26 +45,23 @@ export const OverviewLatestOrders = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Orders Reception" />
+      <CardHeader title="Products Order" />
       <Scrollbar sx={{ flexGrow: 1 }}>
         <Box sx={{ minWidth: 800 }}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>
+                  Product Id
+                </TableCell>
+                <TableCell>
+                  Product Name
+                </TableCell>
+                <TableCell>
+                  Quantity
+                </TableCell>
+                <TableCell>
                   Order Id
-                </TableCell>
-                <TableCell>
-                  Customer Id
-                </TableCell>
-                <TableCell>
-                  Customer Name
-                </TableCell>
-                <TableCell sortDirection="desc">
-                  Date
-                </TableCell>
-                <TableCell>
-                  Location
                 </TableCell>
                 <TableCell>
                   Availability
@@ -73,33 +70,24 @@ export const OverviewLatestOrders = (props) => {
             </TableHead>
             <TableBody>
               {orders.map((order) => {
-                const createdAt = format(order.createdAt, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
                     hover
-                    key={order.id}
+                    key={order.product_id}
                   >
                     <TableCell>
-                      {order.ref}
+                      {order.product_id}
                     </TableCell>
                     <TableCell>
-                      {order.customer.id}
+                      {order.product_name}
                     </TableCell>
                     <TableCell>
-                      {order.customer.name}
+                      {order.quantity}
                     </TableCell>
                     <TableCell>
-                      {createdAt}
+                      {order.id_oforder}
                     </TableCell>
-                    <TableCell>
-                      {order.address.city},{order.address.street}
-                    </TableCell>
-                    {/* <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
-                        {order.status}
-                      </SeverityPill>
-                    </TableCell> */}
                     <TableCell>
                       <Checkbox
                         checked={order.isAvailable}

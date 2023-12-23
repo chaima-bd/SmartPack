@@ -69,16 +69,20 @@ export const CustomersTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
+                  {/* Name */}
+                  Order Id
                 </TableCell>
                 <TableCell>
-                  Email
+                  {/* Email */}
+                  Customer Id
                 </TableCell>
                 <TableCell>
-                  Location
+                  {/* Location */}
+                  Customer Name
                 </TableCell>
                 <TableCell>
-                  Phone
+                  {/* Phone */}
+                  Date
                 </TableCell>
                 <TableCell>
                   Actions
@@ -114,26 +118,20 @@ export const CustomersTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        <Avatar src={customer.avatar}>
-                          {getInitials(customer.name)}
-                        </Avatar>
                         <Typography variant="subtitle2">
-                          {customer.name}
+                          {customer.id}
                         </Typography>
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
+                      {customer.cust_id}
                     </TableCell>
                     <TableCell>
-                      {customer.address.city}, {customer.address.country}
+                      {customer.cust_name}
                     </TableCell>
                     <TableCell>
-                      {customer.phone}
-                    </TableCell>
-                    {/* <TableCell>
                       {createdAt}
-                    </TableCell> */}
+                    </TableCell>
                     <TableCell>
                       <IconButton color="primary" onClick={() => handleViewProfile(customer.id)}>
                         <VisibilityIcon />

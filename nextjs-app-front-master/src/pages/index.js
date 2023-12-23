@@ -12,7 +12,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Orders Reception | SmartPack
+        Products Order| SmartPack
       </title>
     </Head>
     <Box
@@ -60,56 +60,27 @@ const Page = () => (
             <OverviewLatestOrders
               orders={[
                 {
-                  id: 'f69f88012978187a6c12897f',
-                  ref: 'DEV1049',
-                  amount: 30.5,
-                  customer: {
-                    id: 'C123',
-                    name: 'Ekaterina Tankova',
-                  },
-                  address: {
-                    city: 'Marrakech',
-                    country: 'MAROC',
-                    street: 'Gueliz'
-                  },
-                  createdAt: 1555016400000,
+                  product_id: '0',
+                  product_name: 'cahier',
+                  quantity: '3',
+                  id_oforder: '2',
                   status: 'pending'
                 },
                 {
-                  id: '9eaa1c7dd4433f413c308ce2',
-                  ref: 'DEV1048',
-                  amount: 25.1,
-                  customer: {
-                    id: 'C124',
-                    name: 'Cao Yu',
-                  },
-                  address: {
-                    city: 'Marrakech',
-                    country: 'MAROC',
-                    street: 'Gueliz'
-                  },
-                  createdAt: 1555016400000,
-                  
-                  status: 'delivered'
+                  product_id: '1',
+                  product_name: 'crayon',
+                  quantity: '1',
+                  id_oforder: '2',
+                  status: 'pending'
                 },
                 {
-                  id: '01a5230c811bd04996ce7c13',
-                  ref: 'DEV1047',
-                  amount: 10.99,
-                  customer: {
-                    id: 'C125',
-                    name: 'Alexa Richardson',
-                  },
-                  address: {
-                    city: 'Marrakech',
-                    country: 'MAROC',
-                    street: 'Gueliz'
-                  },
-                  createdAt: 1554930000000,
-                  
-                  status: 'refunded'
+                  product_id: '2',
+                  product_name: 'livre',
+                  quantity: '1',
+                  id_oforder: '2',
+                  status: 'pending'
                 },
-              
+
               ]}
               sx={{ height: '100%' }}
             />

@@ -11,20 +11,20 @@ import { SvgIcon } from '@mui/material';
 
 export const items = [
   {
-    title: 'Orders Reception', // overview
-    path: '/',
-    icon: (
-      <SvgIcon fontSize="small">
-        <ShoppingBagIcon />
-      </SvgIcon>
-    )
-  },
-  {
-    title: 'Customers',
+    title: 'Orders',
     path: '/customers',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Products Order', // overview
+    path: '/',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ShoppingBagIcon />
       </SvgIcon>
     )
   },

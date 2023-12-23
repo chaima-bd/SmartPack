@@ -15,40 +15,16 @@ const now = new Date();
 
 const data = [
   {
-    id: 'C123',
-    address: {
-      city: 'Marrakech',
-      country: 'MAROC',
-      street: 'Gueliz'
-    },
+    id: '0',
+    cust_id:'0',
+    cust_name:'cust1',
     createdAt: subDays(subHours(now, 7), 1).getTime(),
-    email: 'carson.darrin@devias.io',
-    name: 'Ekaterina Tankova',
-    phone: '304-428-3097'
   },
   {
-    id: 'C124',
-    address: {
-      city: 'Marrakech',
-      country: 'MAROC',
-      street: 'Gueliz'
-    },
-    createdAt: subDays(subHours(now, 1), 2).getTime(),
-    email: 'fran.perez@devias.io',
-    name: 'Cao Yu',
-    phone: '712-351-5711'
-  },
-  {
-    id: 'C125',
-    address: {
-      city: 'Marrakech',
-      country: 'MAROC',
-      street: 'Gueliz'
-    },
-    createdAt: subDays(subHours(now, 4), 2).getTime(),
-    email: 'jie.yan.song@devias.io',
-    name: 'Alexa Richardson',
-    phone: '770-635-2682'
+    id: '1',
+    cust_id:'1',
+    cust_name:'cust2',
+    createdAt: subDays(subHours(now, 7), 1).getTime(),
   },
 
 
@@ -99,9 +75,11 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Customers | SmartPack
+          Orders | SmartPack
         </title>
       </Head>
+
+      
       <Box
         component="main"
         sx={{
@@ -118,7 +96,7 @@ const Page = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h4">
-                  Customers
+                  Orders
                 </Typography>
                 <Stack
                   alignItems="center"
